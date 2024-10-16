@@ -1,6 +1,7 @@
 package studio5;
 
 import edu.princeton.cs.introcs.StdDraw;
+import java.util.Scanner;
 
 public class Methods {
 
@@ -15,11 +16,13 @@ public class Methods {
 	 */
 	public static double distanceBetween(double x1, double y1, double x2, double y2) {
 		double distance = 0;
-		// FIXME: Hint use Math methods (e.g. Math.sqrt) to compute the distance
+		double distanceX = Math.pow(x2 - x1, 2);
+		double distanceY = Math.pow(y2 - y1,  2);
+		distance = Math.sqrt(distanceX + distanceY);
 		
 		return distance;
 	}
-
+	
 	/**
 	 * Draw a bull's eye at the given location with the given radius.
 	 *
@@ -27,26 +30,22 @@ public class Methods {
 	 * @param y      the y coordinate of the center of the bull's eye
 	 * @param radius the radius of the bull's eye
 	 */
-	public static void drawBullsEye(double x, double y, double radius) {
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.filledCircle(x, y, radius);
-
+	public static void drawBullsEye(double radius, int red, int green, int blue) {
+		StdDraw.setPenColor(red, green, blue);
+		StdDraw.filledCircle(0.5, 0.5, radius);
+	}	
 		// TODO: Draw the remaining rings of the bull's eye
 		// Blue ring with 3.0/4.0 the radius
 		// suggested rgb values: 0, 109, 219
-
-		
-
-		// Red ring with 1.0/2.0 the radius
-		// suggested rgb values: 146, 0, 0
-
-		
-
-		// Yellow ring with 1.0/4.0 the radius
-		// suggested rgb values: 255, 255, 109
-
-		
+	
+	public static void main(String[] args) {
+		drawBullsEye(0.5, 0, 0, 0);
+		drawBullsEye(3.0/8.0, 0, 109, 219);
+		drawBullsEye(1.0/4.0, 146, 0, 0);
+		drawBullsEye(1.0/8.0, 255, 255, 109);
 	}
+		
+	
 
 	/**
 	 * Return a new String which is the original source String with all occurrences
@@ -72,10 +71,14 @@ public class Methods {
 	 * @param values an array of integers
 	 * @return the sum of the elements in values
 	 */
+	
 	public static int arraySum(int[] values) {
 		int sum = 0;
 		// FIXME: Compute the sum of the values in an array
-		
+		int n = values.length;
+		for (int i = 0; i < n; i++) {
+			sum = sum + values[i];
+		}
 		return sum;
 	}
 
@@ -87,16 +90,26 @@ public class Methods {
 	 * @return and array of size that's filled with value
 	 */
 	public static int[] filledArray(int length, int value) {
-		int[] values = null; // FIXME: Create an array of the appropriate size
+		int[] values = new int[length];
+		for (int i = 0; i < length; i++) {
+			values[i] = value;
+		}
+		// FIXME: Create an array of the appropriate size
 		// TODO: Finish this method
-
-		
-
 		return values;
 	}
 
 	// TODO: Create an arrayMean method which accepts an int array of values parameter.
 	// TODO: Create a JavaDoc comment for the arrayMean method.
+	/**
+	 * 
+	 * @param values in an array of integers
+	 * @return mean of integers in array
+	 */
+	public static double arrayMean(int[] values) {
+		double mean = arraySum(values)/values.length;
+		return mean;
+	}
 
 	
 }
